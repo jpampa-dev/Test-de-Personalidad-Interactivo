@@ -1,0 +1,318 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Actualizando tokens para estética anime - blanco y negro */
+  --background: oklch(0 0 0); /* Fondo negro puro */
+  --foreground: oklch(0 0 0); /* Texto blanco puro */
+  --card: white; /* Tarjetas gris muy oscuro */
+  --card-foreground: oklch(1 0 0); /* Texto blanco en tarjetas */
+  --popover: oklch(0.05 0 0); /* Popovers casi negro */
+  --popover-foreground: oklch(1 0 0); /* Texto blanco en popovers */
+  --primary: oklch(0.85 0.05 200); /* Primario blanco */
+  --primary-foreground: oklch(0 0 0); /* Texto negro en primario */
+  --secondary: oklch(0.2 0 0); /* Secundario gris oscuro */
+  --secondary-foreground: oklch(1 0 0); /* Texto blanco en secundario */
+  --terciary: #D1D5DB; /* Secundario gris oscuro */
+  --quaternary: #F9FAFB;
+  --muted: oklch(0.15 0 0); /* Silenciado gris muy oscuro */
+  --muted-foreground: oklch(0.7 0 0); /* Texto gris claro */
+  --accent: oklch(0.9 0 0); /* Acento gris muy claro */
+  --accent-foreground: oklch(0 0 0); /* Texto negro en acento */
+  --destructive: oklch(0.3 0 0); /* Destructivo gris medio */
+  --destructive-foreground: oklch(1 0 0); /* Texto blanco en destructivo */
+  --border: oklch(0.3 0 0); /* Bordes gris medio */
+  --input: oklch(1 0 0); /* Inputs casi negro */
+  --ring: oklch(0.5 0 0); /* Anillo gris medio */
+  --chart-1: oklch(1 0 0); /* Gráficos blanco */
+  --chart-2: oklch(0.8 0 0); /* Gráficos gris claro */
+  --chart-3: oklch(0.6 0 0); /* Gráficos gris medio */
+  --chart-4: oklch(0.4 0 0); /* Gráficos gris oscuro */
+  --chart-5: oklch(0.2 0 0); /* Gráficos muy oscuro */
+  --radius: 0rem; /* Sin bordes redondeados para look más angular */
+  --sidebar: oklch(0.05 0 0); /* Sidebar casi negro */
+  --sidebar-foreground: oklch(1 0 0); /* Texto blanco en sidebar */
+  --sidebar-primary: oklch(0.8 0 0); /* Primario gris claro en sidebar */
+  --sidebar-primary-foreground: oklch(0 0 0); /* Texto negro */
+  --sidebar-accent: oklch(0.2 0 0); /* Acento oscuro en sidebar */
+  --sidebar-accent-foreground: oklch(1 0 0); /* Texto blanco */
+  --sidebar-border: oklch(0.3 0 0); /* Borde gris en sidebar */
+  --sidebar-ring: oklch(0.5 0 0); /* Anillo gris en sidebar */
+  --button-bg-color: #C7D2FE;
+  --button-text-color: #1F2937;
+}
+
+.dark {
+  /* Mismo esquema para modo oscuro */
+  --background: oklch(0 0 0);
+  --foreground: oklch(1 0 0);
+  --card: oklch(0.1 0 0);
+  --card-foreground: oklch(1 0 0);
+  --popover: oklch(0.05 0 0);
+  --popover-foreground: oklch(1 0 0);
+  --primary: oklch(1 0 0);
+  --primary-foreground: oklch(0 0 0);
+  --secondary: oklch(0.2 0 0);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.15 0 0);
+  --muted-foreground: oklch(0.7 0 0);
+  --accent: oklch(0.9 0 0);
+  --accent-foreground: oklch(0 0 0);
+  --destructive: oklch(0.3 0 0);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.3 0 0);
+  --input: oklch(0.05 0 0);
+  --ring: oklch(0.5 0 0);
+  --chart-1: oklch(1 0 0);
+  --chart-2: oklch(0.8 0 0);
+  --chart-3: oklch(0.6 0 0);
+  --chart-4: oklch(0.4 0 0);
+  --chart-5: oklch(0.2 0 0);
+  --sidebar: oklch(0.05 0 0);
+  --sidebar-foreground: oklch(1 0 0);
+  --sidebar-primary: oklch(0.8 0 0);
+  --sidebar-primary-foreground: oklch(0 0 0);
+  --sidebar-accent: oklch(0.2 0 0);
+  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-border: oklch(0.3 0 0);
+  --sidebar-ring: oklch(0.5 0 0);
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-mono;
+  }
+
+  /* Agregando estilos específicos para la estética anime blanco y negro */
+  .anime-text {
+    font-family: 'Manrope', sans-serif;
+    letter-spacing: 0.1em;
+    text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Mejorando responsividad de bordes para móvil */
+  .anime-border {
+    border: 2px solid var(--border);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 2px 2px 0px rgba(0, 0, 0, 0.8), 4px 4px 0px rgba(255, 255, 255, 0.1);
+  }
+
+  @media (min-width: 768px) {
+    .anime-border {
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 4px 4px 0px rgba(0, 0, 0, 0.8), 8px 8px 0px
+        rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  /* Botones optimizados para táctil */
+  .anime-button {
+    box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.1), inset -2px -2px 4px rgba(0, 0, 0, 0.3), 2px 2px 0px
+      rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease;
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+
+  @media (min-width: 768px) {
+    .anime-button {
+      box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.1), inset -2px -2px 4px rgba(0, 0, 0, 0.3), 3px 3px 0px
+        rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .anime-button:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.2), inset -2px -2px 4px rgba(0, 0, 0, 0.4), 3px 3px 0px
+      rgba(0, 0, 0, 0.6);
+  }
+
+  @media (min-width: 768px) {
+    .anime-button:hover {
+      box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.2), inset -2px -2px 4px rgba(0, 0, 0, 0.4), 4px 4px 0px
+        rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  .anime-button:active {
+    transform: translate(1px, 1px);
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.4), 1px 1px 0px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Botones zodiacales transparentes con efectos hover */
+  .zodiac-button {
+    background: transparent;
+    transition: all 0.3s ease;
+    min-height: 44px;
+    touch-action: manipulation;
+    @apply rounded-[10px] border border-[#D1D5DB];
+  }
+
+  .zodiac-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .zodiac-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .zodiac-button.selected {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--foreground);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Tarjetas con sombras reducidas en móvil */
+  .anime-card {
+    background: var(--card);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 3px 3px 0px rgba(0, 0, 0, 0.7), 6px 6px 0px
+      rgba(255, 255, 255, 0.05);
+  }
+
+  @media (min-width: 768px) {
+    .anime-card {
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 6px 6px 0px rgba(0, 0, 0, 0.7), 12px 12px 0px
+        rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  .anime-input {
+    border: 2px solid var(--border);
+    background: var(--input);
+    min-height: 44px; /* Tamaño mínimo táctil */
+  }
+
+  .anime-input:focus {
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.4), inset -1px -1px 2px rgba(255, 255, 255, 0.2), 0 0 0 2px
+      var(--ring);
+  }
+
+  /* Tipografía responsiva */
+  .mobile-text-sm {
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 640px) {
+    .mobile-text-sm {
+      font-size: 0.75rem;
+    }
+  }
+
+  .mobile-text-base {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .mobile-text-base {
+      font-size: 0.875rem;
+    }
+  }
+}
+
+
+.bg-gradient-serene {
+  background-image: linear-gradient(120deg, #f0f8ff 0%, #d6eaff 100%);
+}
+
+
+/* Loading */
+
+
+
+.lds-ripple,
+.lds-ripple div {
+  box-sizing: border-box;
+}
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid currentColor;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 8px;
+    height: 8px;
+    opacity: 0;
+  }
+  4.9% {
+    top: 36px;
+    left: 36px;
+    width: 8px;
+    height: 8px;
+    opacity: 0;
+  }
+  5% {
+    top: 36px;
+    left: 36px;
+    width: 8px;
+    height: 8px;
+    opacity: 1;
+  }
+  100% {
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    opacity: 0;
+  }
+}
+

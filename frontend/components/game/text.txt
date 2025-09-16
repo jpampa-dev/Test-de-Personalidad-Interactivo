@@ -1,0 +1,46 @@
+{
+    "game_id": "9878cbe5-8d81-43f0-bee3-cfccb9c7de6f",
+    "tipo_personalidad": "INFJ",
+    "titulo": "El Visionario Empático: Un Puente entre la Intuición y la Humanidad",
+    "descripcion": "\n  Basado en las elecciones narrativas analizadas, tu perfil sugiere una personalidad **INFJ** (Introversión, iNtuición, Sentimiento, Juicio), conocida como 'El Abogado' o 'El Consejero'. Este tipo combina una profunda intuición sobre las motivaciones humanas con un fuerte deseo de contribuir al bienestar colectivo. En el cuento interactivo, tus decisiones reflejaron:\n  - **Enfoque en valores y significado**: Priorizaste opciones alineadas con principios éticos o emocionales, incluso cuando requerían sacrificio práctico (ej: ayudar a un personaje secundario a costa de recursos).\n  - **Patrones intuitivos**: Elegiste caminos basados en corazonadas o simbolismos (ej: seguir una pista abstracta en lugar de evidencia concreta), indicando preferencia por la **iNtuición (N)** sobre lo sensorial.\n  - **Empatía estratégica**: Tus interacciones con otros personajes mostraron sensibilidad a sus emociones, pero también un plan oculto para guiarlos hacia un desenlace positivo (ej: mediar en conflictos con soluciones creativas).\n  - **Estructura con flexibilidad**: Aunque valoras la coherencia (Juicio, **J**), dejaste espacio para adaptarte si la situación lo exigía, equilibrando idealismo y pragmatismo.\n\n  Los INFJ son raros (1-2% de la población) y suelen ser percibidos como misteriosos, pero su fuerza radica en transformar ideas abstractas en acciones que inspiran a otros. Tu historial narrativo sugiere que disfrutas explorar temas como la identidad, la justicia y la conexión humana, incluso en contextos fantásticos o distópicos.",
+    "fortalezas": [
+        {
+            "nombre": "Perspicacia emocional",
+            "descripcion": "Capacidad para leer entre líneas las motivaciones de personajes (o personas en la vida real), anticipando conflictos y oportunidades de crecimiento. En el cuento, esto se vio en elecciones que resolvían tensiones latentes.",
+            "ejemplo_narrativo": "Elegir perdonar a un antagonista tras descubrir su trasfondo traumático, cambiando el rumbo de la historia."
+        },
+        {
+            "nombre": "Creatividad ética",
+            "descripcion": "Innovas dentro de marcos morales. Tus soluciones narrativas a menudo combinaban originalidad con un fuerte sentido de 'lo correcto'.",
+            "ejemplo_narrativo": "Usar un objeto simbólico (ej: un espejo roto) para revelar verdades ocultas, en lugar de métodos convencionales."
+        },
+        {
+            "nombre": "Liderazgo inspirador",
+            "descripcion": "Aunque introvertido, tu estilo de toma de decisiones atrae a otros personajes hacia causas mayores, incluso sin buscar protagonismo.",
+            "ejemplo_narrativo": "Unir a facciones rivales bajo una meta común mediante un discurso que apelaba a valores compartidos."
+        },
+        {
+            "nombre": "Resiliencia visionaria",
+            "descripcion": "Mantuviste la fe en tus ideas a largo plazo, incluso cuando el cuento presentaba obstáculos abrumadores.",
+            "ejemplo_narrativo": "Persistir en un camino arriesgado (ej: buscar un artefacto legendario) pese a las advertencias de otros personajes."
+        }
+    ],
+    "areas_de_crecimiento": [
+        {
+            "nombre": "Equilibrio entre idealismo y realidad",
+            "descripcion": "A veces, la búsqueda de soluciones perfectas puede llevar a pasar por alto opciones prácticas viables. En el cuento, esto pudo manifestarse en rechazar compromisos que habrían avanzado la trama más rápido.",
+            "recomendacion": "Practica evaluar pros/contras de manera objetiva (usando tu **Sentimiento (F)** *después* de analizar datos fríos)."
+        },
+        {
+            "nombre": "Expresión de necesidades propias",
+            "descripcion": "Los INFJ suelen priorizar las necesidades ajenas. En tus elecciones, pudo notarse una tendencia a sacrificar recursos o ventajas personales por otros personajes.",
+            "recomendacion": "Incluye en tus narrativas (y vida real) momentos donde tu personaje/ tú afirméis: 'Esto es lo que *yo* necesito para seguir adelante'."
+        },
+        {
+            "nombre": "Gestión de la sobreestimulación",
+            "descripcion": "La combinación de intuición y empatía puede ser agotadora. Si en el cuento evitaste escenas caóticas o multitudes, podría reflejar esta sensibilidad.",
+            "recomendacion": "Diseña 'pausas' en tus historias (ej: escenas de reflexión en la naturaleza) para recargar energía, igual que en la vida real."
+        }
+    ],
+    "mensaje_final": "\n  Tu historial narrativo revela a alguien que **ve el mundo no solo como es, sino como podría ser**, y actúa para cerrar esa brecha. Esta capacidad es un don poderoso, tanto en historias como en la realidad. Te animo a explorar más personajes y situaciones que desafíen tus fortalezas (ej: ¿cómo reaccionaría tu estilo INFJ en un escenario donde la lógica fría es la única salida?). \n\n\n  Recuerda: los INFJ a menudo subestiman su impacto. Si en el cuento lograste cambiar el destino de otros personajes, es probable que en la vida real también estés generando ondas de cambio sin darte cuenta. \n\n\n  *¿Qué aspecto de este perfil resuena más contigo? ¿Hay alguna elección narrativa que te sorprenda haber hecho?* (Esta reflexión puede profundizar tu autoconocimiento)."
+}
