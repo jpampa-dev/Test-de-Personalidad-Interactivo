@@ -190,6 +190,33 @@ Content-Type: application/json
 
 ## 🔧 Comandos Útiles
 
+### Comandos UV (Backend)
+
+```bash
+# Instalar dependencias del proyecto
+cd backend && uv sync
+
+# Reinstalar dependencias
+cd backend && uv sync --reinstall
+
+# Agregar nueva dependencia
+cd backend && uv add nombre-paquete
+
+# Agregar dependencia de desarrollo
+cd backend && uv add --dev nombre-paquete
+
+# Mostrar dependencias instaladas
+cd backend && uv pip list
+
+# Ejecutar aplicación con UV
+cd backend && uv run uvicorn main:app --reload --host 0.0.0.0 --port 8000
+
+# Ejecutar script principal
+cd backend && uv run python main.py
+```
+
+### Comandos Generales
+
 ```bash
 # Limpiar y reinstalar dependencias del frontend
 cd frontend && rm -rf node_modules package-lock.json && npm install
