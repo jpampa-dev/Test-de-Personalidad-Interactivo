@@ -252,7 +252,13 @@ npm run type-check
 
 ## 📄 Licencia
 
-Este proyecto fue desarrollado para una hackathon. Ver detalles de licencia en el archivo LICENSE.
+Este proyecto está licenciado bajo la MIT License - ver el archivo [LICENSE](LICENSE) para más detalles.
+
+**MIT License** permite:
+- ✅ Uso comercial
+- ✅ Modificación
+- ✅ Distribución
+- ✅ Uso privado
 
 ## 👥 Equipo
 
