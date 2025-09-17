@@ -12,7 +12,7 @@ QDRANT_COLLECTION_NAME = "historial_juego_terror"
 # Usamos el constructor que acepta la URL completa y la API Key.
 client = qdrant_client.QdrantClient(
     url=os.getenv("QDRANT_URL"),
-    #api_key=os.getenv("QDRANT_API_KEY"),
+    api_key=os.getenv("QDRANT_API_KEY"),
 )
 
 # El resto de la lógica permanece igual, pero ahora la conexión será autenticada.

@@ -43,11 +43,23 @@ export interface GameData {
   };
 }
 
+export interface ItemArea{
+  nombre?: string;
+  descripcion?: string;
+  recomendacion?: string;
+}
+
+export interface ItemFortaleza{
+  nombre?: string;
+  descripcion?: string;
+  ejemplo_narrativo?: string;
+}
+
 export interface ProfileData {
   tipo_personalidad: string;
   titulo: string;
   descripcion: string;
-  fortalezas: string[];
-  areas_de_crecimiento: string[];
+  fortalezas: ItemFortaleza[];
+  areas_de_crecimiento: ItemArea[];
   mensaje_final: string;
 }

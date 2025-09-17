@@ -112,7 +112,8 @@ export function GameView({ initialGameData }: GameViewProps) {
                 <ul className="list-disc list-inside">
                   {finalProfile?.fortalezas && finalProfile.fortalezas.map((fortaleza, index) => (
                     <li key={index} className="text-foreground leading-relaxed text-base text-pretty mobile-text-base">
-                      {fortaleza}
+                      <b>{fortaleza.nombre}:</b> {fortaleza.descripcion} <br />
+                      <i>{fortaleza.ejemplo_narrativo}</i>
                     </li>
                   ))}
                 </ul>
@@ -122,7 +123,8 @@ export function GameView({ initialGameData }: GameViewProps) {
                 <ul className="list-disc list-inside">
                   {finalProfile?.areas_de_crecimiento && finalProfile.areas_de_crecimiento.map((area, index) => (
                     <li key={index} className="text-foreground leading-relaxed text-base text-pretty mobile-text-base">
-                      {area}
+                      <b>{area.nombre}:</b> {area.descripcion} <br />
+                      <i>{area.recomendacion}</i>
                     </li>
                   ))}
                 </ul>
