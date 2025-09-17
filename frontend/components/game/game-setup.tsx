@@ -52,7 +52,7 @@ export function GameSetup({ onGameReady }: GameSetupProps) {
     setIsLoading(true);
     setApiError(null);
     try {
-      const response = await fetch("http://127.0.0.1:8000/iniciar_juego", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/iniciar_juego`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -67,7 +67,7 @@ export function GameSetup({ onGameReady }: GameSetupProps) {
       }
       
       const gameData: GameData = await response.json();
-      const responseImage = await fetch(`https://api.unsplash.com/photos/random?query=${gameData.palabra_simbolica}&client_id=dCtXDSTmDcdb78I1D3-c9fM5k22jhYU2Keea9rFkV-c`);
+      const responseImage = await fetch(`https://api.unsplash.com/photos/random?query=${gameData.palabra_simbolica}&client_id=${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}`);
       if (!responseImage.ok) throw new Error("La respuesta del servidor no fue satisfactoria.");
 
       const imageData = await responseImage.json();
@@ -78,7 +78,6 @@ export function GameSetup({ onGameReady }: GameSetupProps) {
         }
       };
       gameData.imagen = imageSmall;
-      console.log("gameData", gameData);
       onGameReady(gameData);
 
     } catch (error) {

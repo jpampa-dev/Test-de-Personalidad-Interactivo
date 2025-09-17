@@ -12,8 +12,7 @@ export interface GameViewProps {
   initialGameData: GameData;
 }
 
-// --- CONSTANTE: Definimos el número de turnos ---
-const TOTAL_TURNS = 1;
+const TOTAL_TURNS = process.env.NEXT_PUBLIC_TOTAL_TURNS ? parseInt(process.env.NEXT_PUBLIC_TOTAL_TURNS) : 1;
 
 export function GameView({ initialGameData }: GameViewProps) {
   const [gameState, setGameState] = useState<GameData>(initialGameData);
@@ -27,7 +26,7 @@ export function GameView({ initialGameData }: GameViewProps) {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch("http://127.0.0.1:8000/jugar_turno", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jugar_turno`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ game_id: gameState.game_id, eleccion: choiceText }),
@@ -39,7 +38,7 @@ export function GameView({ initialGameData }: GameViewProps) {
       setGameState(newGameData);
       setTurnCount(prevCount => prevCount + 1);
 
-      const responseImage = await fetch(`https://api.unsplash.com/photos/random?query=${newGameData.palabra_simbolica}&client_id=dCtXDSTmDcdb78I1D3-c9fM5k22jhYU2Keea9rFkV-c`);
+      const responseImage = await fetch(`https://api.unsplash.com/photos/random?query=${newGameData.palabra_simbolica}&client_id=${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}`);
       if (!responseImage.ok) throw new Error("La respuesta del servidor no fue satisfactoria.");
 
       const imageData = await responseImage.json();
@@ -58,7 +57,7 @@ export function GameView({ initialGameData }: GameViewProps) {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch("http://127.0.0.1:8000/finalizar_evaluacion", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/finalizar_evaluacion`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ game_id: gameState.game_id }),
