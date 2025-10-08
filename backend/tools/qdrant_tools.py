@@ -63,3 +63,30 @@ def retrieve_game_history(game_id: str) -> str:
 
     except Exception as e:
         return f"Error al recuperar el historial desde Qdrant: {e}"
+
+
+def save_analysis_result(game_id: str, perfil_data: dict) -> None:
+    """Guarda el resultado del análisis psicológico en Qdrant"""
+    vector = np.random.rand(1024).tolist()
+    point_id = f"{game_id}_analysis"
+    payload = {"game_id": game_id, "type": "analysis", "perfil": perfil_data}
+    qdrant_service.upsert(
+        collection_name=QDRANT_COLLECTION_NAME,
+        points=[models.PointStruct(id=point_id, vector=vector, payload=payload)],
+        wait=True
+    )
+
+
+def get_analysis_result(game_id: str) -> dict:
+    """Recupera el resultado del análisis psicológico desde Qdrant"""
+    try:
+        result = qdrant_service.retrieve(
+            collection_name=QDRANT_COLLECTION_NAME,
+            ids=[f"{game_id}_analysis"],
+            with_payload=True
+        )
+        if result:
+            return result[0].payload.get("perfil")
+        return None
+    except:
+        return None

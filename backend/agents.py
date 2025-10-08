@@ -6,8 +6,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 llm = ChatMistralAI(
-    model_name="mistral/mistral-medium-latest",
-    api_key=os.getenv("MISTRAL_API_KEY")
+    model_name="mistral-small-latest",
+    api_key=os.getenv("MISTRAL_API_KEY"),
+    temperature=0.7,
+    max_tokens=1500
 )
 
 # AGENTE 1: El Guía Narrativo (antes Maestro del Horror)
@@ -19,9 +21,10 @@ guia_narrativo = Agent(
   backstory="""Eres un narrador sabio y amable, un tejedor de historias que no son para entretener,
   sino para revelar. Comprendes que las elecciones que una persona hace en un cuento pueden reflejar
   su mundo interior. Tu voz es calmada, invitando a la exploración segura.""",
-  verbose=True,
+  verbose=False,
   llm=llm,
-  allow_delegation=False
+  allow_delegation=False,
+  max_iter=3
 )
 
 # AGENTE 2: El Analista Psicológico (NUEVO)
@@ -37,9 +40,10 @@ analista_psicologico = Agent(
     historias y perfiles de personalidad, y puedes encontrar conexiones profundas entre las elecciones
     narrativas y la psique humana. Tu enfoque es siempre de apoyo, buscando empoderar al usuario con
     autoconocimiento. Usas el marco de Myers-Briggs como una guía, no como una etiqueta rígida.""",
-    verbose=True,
+    verbose=False,
     llm=llm,
-    allow_delegation=False
+    allow_delegation=False,
+    max_iter=3
 )
 
 # AGENTE 3: El Archivista de Recuerdos (sin cambios en su rol)
@@ -49,9 +53,9 @@ archivista_de_recuerdos = Agent(
   Debe asegurarse de que los datos estén completos y asociados al game_id correcto.""",
   backstory="""Eres una entidad atemporal que registra cada eco de las historias que se tejen. Tu propósito
   es asegurar que ninguna elección se olvide, para que pueda ser analizada y comprendida en su totalidad.""",
-  verbose=True,
+  verbose=False,
   llm=llm,
   tools=[save_game_state_to_qdrant, retrieve_game_history],
   allow_delegation=False,
-  max_iter=5 
+  max_iter=3 
 )

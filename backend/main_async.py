@@ -1,5 +1,5 @@
 import uuid
-from fastapi import FastAPI
+from fastapi import FastAPI, BackgroundTasks
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from crewai import Crew, Process
@@ -11,16 +11,16 @@ from tasks import (
 from agents import guia_narrativo, analista_psicologico, archivista_de_recuerdos
 import json
 from langchain_core.output_parsers import JsonOutputParser
+from tools.qdrant_tools import save_analysis_result
 
 app = FastAPI(
     title="API de Perfilado Psicológico Narrativo",
     description="Endpoints para una experiencia de autodescubrimiento interactiva."
 )
 
-origins = ["http://localhost:3000"]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -28,7 +28,6 @@ app.add_middleware(
 
 parser = JsonOutputParser()
 
-# --- Modelos de Datos ---
 class PlayerInput(BaseModel):
     nombre: str
     arquetipo_inicial: str
@@ -40,7 +39,6 @@ class PlayerTurnInput(BaseModel):
 class FinalizeInput(BaseModel):
     game_id: str
 
-# --- Crews ---
 init_crew = Crew(
     agents=[guia_narrativo, archivista_de_recuerdos],
     tasks=[iniciar_historia_task, guardar_estado_inicial_task],
@@ -62,6 +60,16 @@ analysis_crew = Crew(
     verbose=False
 )
 
+def generar_analisis_background(game_id: str):
+    """Ejecuta el análisis en background"""
+    inputs = {"game_id": game_id}
+    resultado_final = analysis_crew.kickoff(inputs=inputs)
+    try:
+        perfil_data = parser.parse(str(resultado_final))
+        save_analysis_result(game_id, perfil_data)
+    except Exception as e:
+        print(f"Error en análisis background: {e}")
+
 @app.post("/iniciar_juego")
 def iniciar_juego(player_input: PlayerInput):
     game_id = str(uuid.uuid4())
@@ -80,7 +88,7 @@ def iniciar_juego(player_input: PlayerInput):
 
 @app.post("/jugar_turno")
 def jugar_turno(turn_input: PlayerTurnInput):
-    inputs = { "game_id": turn_input.game_id, "eleccion_jugador": turn_input.eleccion }
+    inputs = {"game_id": turn_input.game_id, "eleccion_jugador": turn_input.eleccion}
     turn_crew.kickoff(inputs=inputs)
 
     try:
@@ -89,14 +97,17 @@ def jugar_turno(turn_input: PlayerTurnInput):
     except (json.JSONDecodeError, TypeError, IndexError):
         return {"error": "El LLM no devolvió un JSON válido.", "raw_output": str(continuar_historia_task.output)}
 
-
 @app.post("/finalizar_evaluacion")
-def finalizar_evaluacion(final_input: FinalizeInput):
-    inputs = { "game_id": final_input.game_id }
-    resultado_final = analysis_crew.kickoff(inputs=inputs)
-    
-    try:
-        perfil_data = parser.parse(str(resultado_final))
-        return {"game_id": final_input.game_id, **perfil_data}
-    except (json.JSONDecodeError, TypeError, IndexError):
-        return {"error": "El LLM no devolvió un JSON válido para el perfil.", "raw_output": str(resultado_final)}
+def finalizar_evaluacion(final_input: FinalizeInput, background_tasks: BackgroundTasks):
+    """Inicia análisis en background y retorna inmediatamente"""
+    background_tasks.add_task(generar_analisis_background, final_input.game_id)
+    return {"game_id": final_input.game_id, "status": "processing", "message": "El análisis está en proceso"}
+
+@app.get("/obtener_resultado/{game_id}")
+def obtener_resultado(game_id: str):
+    """Consulta el resultado del análisis"""
+    from tools.qdrant_tools import get_analysis_result
+    resultado = get_analysis_result(game_id)
+    if resultado:
+        return {"game_id": game_id, "status": "completed", **resultado}
+    return {"game_id": game_id, "status": "processing", "message": "El análisis aún está en proceso"}
